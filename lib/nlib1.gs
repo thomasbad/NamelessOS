@@ -439,7 +439,8 @@ removeDuplicates = function(exploits)
 		index1 = index1+1
 		index2 = exploits.len -1
 		while index2 > index1
-			if exploit.memory == exploits[index2].memory and exploit.string == exploits[index2].string then exploits.remove(index2)
+			if exploit.memory == exploits[index2].memory and exploit.string == exploits[index2].string then 
+				exploits.remove(index2)
 			end if
 			index2 = index2 - 1
 		end while
@@ -1162,12 +1163,14 @@ end function
 findUnlocked = function(dirPtr)
 	directories = dirPtr.get_folders
 	files = dirPtr.get_files
-	if dirPtr.has_permission("w") then Print("<color=#"+getColorString(dirPtr)+">Directory at <b>"+dirPtr.path+"</b> has write permission.")
+	if dirPtr.has_permission("w") then 
+		Print("<color=#"+getColorString(dirPtr)+">Directory at <b>"+dirPtr.path+"</b> has write permission.")
 	if files.len > 0 then
 		for file in files
 			if not findUnlockedRWString(file.has_permission("r"), file.has_permission("w")) == "no" then
 				Print("<color=#"+getColorString(file)+">File at <b>"+file.path+"</b> has "+findUnlockedRWString(file.has_permission("r"), file.has_permission("w"))+" permissions.")
 			end if
+		end for
 		end if
 	end if
 	if directories.len > 0 then
